@@ -45,14 +45,13 @@ const displayMoreInfo = info => {
     console.log(info);
     const moreInfoContainer = document.getElementById("more-info-container");
     moreInfoContainer.innerHTML = `
-    <div>
-    <img src="" alt="">
-    <h3>Name: </h3>
-    <h3>Brand: </h3>
-    <h3>Release Date: </h3>
-    <h3>ROM: </h3>
-    <h3>RAM: </h3>
-    <h3>Chipset: </h3>
+    <div class="">
+    <img class="w-50" src="${info.image}" alt="">
+    <h3>Name: ${info.name}</h3>
+    <h3>Brand: ${info.brand}</h3>
+    <h3>Release Date: ${info.releaseDate}</h3>
+    <h3>Memory: ${info.mainFeatures.memory}</h3>
+    <h3>Chipset: ${info.mainFeatures.chipSet}</h3>
   </div>
     `
 }
