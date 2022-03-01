@@ -67,7 +67,7 @@ const displayMoreInfo = info => {
     <div class="card-body">
       <h2 class="card-title">Name: ${info.name}</h2>
       <h3 class="card-text">Brand: ${info.brand}</h3>
-      <h3 class="card-text">Release Date: ${info.releaseDate ? info.releaseDate : "Release Date Not Found"}</h3>
+      <h3 class="card-text">Release Date: ${info.releaseDate ? info.releaseDate : "No release date found"}</h3>
       <h3 class="card-text">Memory: ${info.mainFeatures.memory}</h3>
       <h3 class="card-text">Chipset: ${info.mainFeatures.chipSet}</h3>
       <div class="mt-4">
