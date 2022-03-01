@@ -61,6 +61,7 @@ const displayMoreInfo = info => {
     <h3>Release Date: ${info.releaseDate}</h3>
     <h3>Memory: ${info.mainFeatures.memory}</h3>
     <h3>Chipset: ${info.mainFeatures.chipSet}</h3>
+    <h3 class="mt-5">Sensors: </h3>
     
   </div>
     `;
