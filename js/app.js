@@ -1,5 +1,5 @@
 const loadProducts = () => {
-    
+
     const productsContainer = document.getElementById("products-container");
     productsContainer.textContent = "";
     const searchText = document.getElementById("input-field").value;
@@ -7,15 +7,15 @@ const loadProducts = () => {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            if(data.data == false){
+            if (data.data == false) {
                 document.getElementById("error-message").style.display = "block";
             }
-            else{
+            else {
                 displayProducts(data.data);
                 document.getElementById("error-message").style.display = "none";
             }
         })
-        document.getElementById("input-field").value = "";
+    document.getElementById("input-field").value = "";
 }
 
 const displayProducts = (products) => {
@@ -52,10 +52,6 @@ const loadMoreInfo = id => {
 }
 
 const displayMoreInfo = info => {
-    if (info == null) {
-
-    }
-    console.log(info);
     const moreInfoContainer = document.getElementById("more-info-container");
     moreInfoContainer.innerHTML = `
     <div class="">
@@ -74,7 +70,4 @@ const displayMoreInfo = info => {
         h3.innerText = (sensor);
         moreInfoContainer.appendChild(h3);
     }
-
-   const others = info.other;
-   console.log("the other info", others);
 }
