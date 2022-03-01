@@ -1,7 +1,9 @@
 // load products and fetch API
 const loadProducts = () => {
     const productsContainer = document.getElementById("products-container");
+    const moreInfoContainer = document.getElementById("more-info-container");
     productsContainer.textContent = "";
+    moreInfoContainer.textContent = "";
     const searchText = document.getElementById("input-field").value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
