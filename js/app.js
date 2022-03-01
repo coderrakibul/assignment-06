@@ -67,16 +67,14 @@ const displayMoreInfo = info => {
     <div class="card-body">
       <h2 class="card-title">Name: ${info.name}</h2>
       <h3 class="card-text">Brand: ${info.brand}</h3>
-      <h3 class="card-text">Release Date: ${info.releaseDate}</h3>
+      <h3 class="card-text">Release Date: ${info.releaseDate ? info.releaseDate : "Release Date Not Found"}</h3>
       <h3 class="card-text">Memory: ${info.mainFeatures.memory}</h3>
       <h3 class="card-text">Chipset: ${info.mainFeatures.chipSet}</h3>
       <div class="mt-4">
-      <h2>Sensors: </h2>
+      <h1>Sensors: </h1>
       <h3 id="sensor-area" class="card-text"> </h3>
       </div>
-
-      <h2 class="card-text mt-4">Others: </h2>
-      
+      <h1 class="card-text mt-4">Others: </h1>
       <h3 class="card-text">Bluetooth: ${info?.others?.Bluetooth}</h3>
       <h3 class="card-text">GPS: ${info?.others?.GPS}</h3>
       <h3 class="card-text">NFC: ${info?.others?.NFC}</h3>
@@ -92,4 +90,5 @@ const displayMoreInfo = info => {
     const getSensor = info.mainFeatures.sensors;
     const sensorText = getSensor.join(", ");
     sensorArea.innerText = sensorText;
+
 }
