@@ -30,7 +30,7 @@ const displayProducts = (products) => {
         const div = document.createElement("div");
         div.classList.add("col");
         div.innerHTML = `
-    <div class="card h-100 p-3">
+    <div class="card h-100 p-3 border-2 shadow">
     <img src="${product.image}" class="card-img-top w-50 mx-auto">
     <div class="card-body d-flex justify-content-between">
       <div>
@@ -68,8 +68,11 @@ const displayMoreInfo = info => {
       <h2 class="card-title">Name: ${info.name}</h2>
       <h3 class="card-text">Brand: ${info.brand}</h3>
       <h3 class="card-text">Release Date: ${info.releaseDate ? info.releaseDate : "No release date found"}</h3>
-      <h3 class="card-text">Memory: ${info.mainFeatures.memory}</h3>
+      <h1 class="card-text mt-4">Features: </h1>
       <h3 class="card-text">Chipset: ${info.mainFeatures.chipSet}</h3>
+      <h3 class="card-text">Memory: ${info.mainFeatures.memory}</h3>
+      <h3 class="card-text">Storage: ${info.mainFeatures.storage}</h3>
+      <h3 class="card-text">Display Size: ${info.mainFeatures.displaySize}</h3>
       <div class="mt-4">
       <h1>Sensors: </h1>
       <h3 id="sensor-area" class="card-text"> </h3>
