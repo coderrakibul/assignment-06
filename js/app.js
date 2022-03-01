@@ -22,8 +22,8 @@ const displayProducts = (products) => {
       <h3 class="card-title">${product.phone_name}</h3>
       <h4 class="card-text">${product.brand}</h4>
       </div>
-      <div>
-      <button onclick="loadMoreInfo('${product.slug}')" class="btn btn-primary mx-auto">More Details</button>
+      <div class="">
+      <button onclick="loadMoreInfo('${product.slug}')" class="btn btn-primary">Details</button>
       </div>
     </div>
     </div>
@@ -42,11 +42,14 @@ const loadMoreInfo = id => {
 }
 
 const displayMoreInfo = info => {
+    if(info == null){
+
+    }
     console.log(info);
     const moreInfoContainer = document.getElementById("more-info-container");
     moreInfoContainer.innerHTML = `
     <div class="">
-    <img class="w-50" src="${info.image}" alt="">
+    <img class="w-25" src="${info.image}" alt="">
     <h3>Name: ${info.name}</h3>
     <h3>Brand: ${info.brand}</h3>
     <h3>Release Date: ${info.releaseDate}</h3>
