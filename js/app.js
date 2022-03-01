@@ -4,7 +4,6 @@ const loadProducts = () => {
     productsContainer.textContent = "";
     const searchText = document.getElementById("input-field").value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    console.log(url);
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -70,9 +69,18 @@ const displayMoreInfo = info => {
       <h3 class="card-text">Memory: ${info.mainFeatures.memory}</h3>
       <h3 class="card-text">Chipset: ${info.mainFeatures.chipSet}</h3>
       <div class="mt-4">
-      <h3>Sensor: </h3>
+      <h2>Sensors: </h2>
       <h3 id="sensor-area" class="card-text"> </h3>
       </div>
+
+      <h2 class="card-text mt-4">Others: </h2>
+      
+      <h3 class="card-text">Bluetooth: ${info?.others?.Bluetooth}</h3>
+      <h3 class="card-text">GPS: ${info?.others?.GPS}</h3>
+      <h3 class="card-text">NFC: ${info?.others?.NFC}</h3>
+      <h3 class="card-text">Radio: ${info?.others?.Radio}</h3>
+      <h3 class="card-text">USB: ${info?.others?.USB}</h3>
+      <h3 class="card-text">WLAN: ${info?.others?.WLAN}</h3>
     </div>
     </div>
     `;
@@ -82,9 +90,4 @@ const displayMoreInfo = info => {
     const getSensor = info.mainFeatures.sensors;
     const sensorText = getSensor.join(", ");
     sensorArea.innerText = sensorText;
-
-    // others information
-
 }
-
-
