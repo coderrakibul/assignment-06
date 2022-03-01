@@ -1,20 +1,30 @@
 const loadProducts = () => {
+    
     const productsContainer = document.getElementById("products-container");
     productsContainer.textContent = "";
     const searchText = document.getElementById("input-field").value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
-    .then(response => response.json())
-    .then(data => displayProducts(data.data))
+        .then(response => response.json())
+        .then(data => {
+            if(data.data == false){
+                document.getElementById("error-message").style.display = "block";
+            }
+            else{
+                displayProducts(data.data);
+                document.getElementById("error-message").style.display = "none";
+            }
+        })
+        document.getElementById("input-field").value = "";
 }
-loadProducts()
+
 const displayProducts = (products) => {
     document.getElementById("input-field").value = "";
     const productsContainer = document.getElementById("products-container");
-    for(const product of products){
+    for (const product of products) {
         const div = document.createElement("div");
-    div.classList.add("col");
-    div.innerHTML = `
+        div.classList.add("col");
+        div.innerHTML = `
     <div class="card h-100 p-3">
     <img src="${product.image}" class="card-img-top w-50 mx-auto">
     <div class="card-body d-flex justify-content-between">
@@ -29,7 +39,7 @@ const displayProducts = (products) => {
     </div>
     
     `;
-    productsContainer.appendChild(div);
+        productsContainer.appendChild(div);
     }
 }
 
@@ -37,12 +47,12 @@ const displayProducts = (products) => {
 const loadMoreInfo = id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)
-    .then(response => response.json())
-    .then(data => displayMoreInfo(data.data))
+        .then(response => response.json())
+        .then(data => displayMoreInfo(data.data))
 }
 
 const displayMoreInfo = info => {
-    if(info == null){
+    if (info == null) {
 
     }
     console.log(info);
@@ -55,6 +65,16 @@ const displayMoreInfo = info => {
     <h3>Release Date: ${info.releaseDate}</h3>
     <h3>Memory: ${info.mainFeatures.memory}</h3>
     <h3>Chipset: ${info.mainFeatures.chipSet}</h3>
+    
   </div>
-    `
+    `;
+    const sensors = (info.mainFeatures.sensors);
+    for (const sensor of sensors) {
+        const h3 = document.createElement("h3");
+        h3.innerText = (sensor);
+        moreInfoContainer.appendChild(h3);
+    }
+
+   const others = info.other;
+   console.log("the other info", others);
 }
