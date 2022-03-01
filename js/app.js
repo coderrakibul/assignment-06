@@ -1,9 +1,10 @@
+// load products and fetch API
 const loadProducts = () => {
-
     const productsContainer = document.getElementById("products-container");
     productsContainer.textContent = "";
     const searchText = document.getElementById("input-field").value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    console.log(url);
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -18,10 +19,13 @@ const loadProducts = () => {
     document.getElementById("input-field").value = "";
 }
 
+
+// show all products in UI
 const displayProducts = (products) => {
     document.getElementById("input-field").value = "";
     const productsContainer = document.getElementById("products-container");
-    for (const product of products) {
+    const products20 = products.slice(0, 20);
+    for (const product of products20) {
         const div = document.createElement("div");
         div.classList.add("col");
         div.innerHTML = `
@@ -43,7 +47,7 @@ const displayProducts = (products) => {
     }
 }
 
-
+// call API and load more info data
 const loadMoreInfo = id => {
     const url = `https://openapi.programming-hero.com/api/phone/${id}`;
     fetch(url)
@@ -51,24 +55,36 @@ const loadMoreInfo = id => {
         .then(data => displayMoreInfo(data.data))
 }
 
+// show more info in UI
 const displayMoreInfo = info => {
     const moreInfoContainer = document.getElementById("more-info-container");
     moreInfoContainer.innerHTML = `
-    <div class="">
-    <img class="w-25" src="${info.image}" alt="">
-    <h3>Name: ${info.name}</h3>
-    <h3>Brand: ${info.brand}</h3>
-    <h3>Release Date: ${info.releaseDate}</h3>
-    <h3>Memory: ${info.mainFeatures.memory}</h3>
-    <h3>Chipset: ${info.mainFeatures.chipSet}</h3>
-    <h3 class="mt-5">Sensors: </h3>
-    
-  </div>
+    <div class="card col-12 col-lg-6 mx-auto shadow">
+    <div class=" mx-auto mt-3">
+    <img src="${info.image}" class="card-img-top img-fluid" alt="">
+    </div>
+    <div class="card-body">
+      <h2 class="card-title">Name: ${info.name}</h2>
+      <h3 class="card-text">Brand: ${info.brand}</h3>
+      <h3 class="card-text">Release Date: ${info.releaseDate}</h3>
+      <h3 class="card-text">Memory: ${info.mainFeatures.memory}</h3>
+      <h3 class="card-text">Chipset: ${info.mainFeatures.chipSet}</h3>
+      <div class="mt-4">
+      <h3>Sensor: </h3>
+      <h3 id="sensor-area" class="card-text"> </h3>
+      </div>
+    </div>
+    </div>
     `;
-    const sensors = (info.mainFeatures.sensors);
-    for (const sensor of sensors) {
-        const h3 = document.createElement("h3");
-        h3.innerText = (sensor);
-        moreInfoContainer.appendChild(h3);
-    }
+
+    // sensors information
+    const sensorArea = document.getElementById("sensor-area");
+    const getSensor = info.mainFeatures.sensors;
+    const sensorText = getSensor.join(", ");
+    sensorArea.innerText = sensorText;
+
+    // others information
+
 }
+
+

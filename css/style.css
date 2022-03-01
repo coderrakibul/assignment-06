@@ -1,3 +1,5 @@
+/* the error message none bydefault */
+
 #error-message{
     display:none;
 }
